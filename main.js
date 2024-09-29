@@ -4,14 +4,15 @@
 // });
 // population / amount of cars (population estimate) = scaling factor
 // scaling factor * amount of cars (averaged out) = population estimate
-const scalingFactor = 3.5;
+const scalingFactor = 200000 / 3.5;
 const getData = async () => {
-  let url = "https://253c-34-125-46-57.ngrok-free.app/";
-  const response = await fetch(url);
+  let url = "https://9f56-34-124-232-171.ngrok-free.app/";
+  const response = await fetch(url).then((r) => r.json());
+
   console.log(response);
   let cars = response;
-  let population = cars * scalingFactor;
+  let population = Math.round(cars * scalingFactor);
   document.querySelector(".number").textContent = population;
-}
-
-
+  console.log("Updated");
+};
+getData();
